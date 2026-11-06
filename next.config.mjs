@@ -4,6 +4,7 @@ const basePath = process.env.GITHUB_ACTIONS === "true" && isProjectPage ? `/${re
 
 const nextConfig = {
   output: "export",
+  trailingSlash: true,
   images: {
     unoptimized: true
   },
