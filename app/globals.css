@@ -711,7 +711,6 @@ ul {
 }
 
 .project-category-link svg,
-.project-preview-arrow svg,
 .project-detail-actions svg {
   width: 1rem;
   height: 1rem;
@@ -744,13 +743,6 @@ ul {
   border: 1px solid var(--line);
   background: var(--surface);
   scroll-snap-align: start;
-}
-
-.project-preview-heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 0.75rem;
 }
 
 .project-preview-copy {
@@ -817,16 +809,6 @@ ul {
 .project-preview-tools svg {
   width: 1rem;
   height: 1rem;
-}
-
-.project-preview-arrow {
-  display: flex;
-  width: 2.1rem;
-  height: 2.1rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--line);
-  color: var(--text);
 }
 
 .project-category-empty,

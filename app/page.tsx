@@ -61,8 +61,8 @@ function withBasePath(path: string) {
   return path.startsWith("/") ? `${publicBasePath}${path}` : path;
 }
 
-const lanyardFrontImage = withBasePath("/my_love.jpg");
-const lanyardBackImage = withBasePath("/my_photo.jpg");
+const lanyardFrontImage = withBasePath("/my_photo.jpg");
+const lanyardBackImage = withBasePath("/my_love.jpg");
 const lanyardImagePreloads: HTMLImageElement[] = [];
 
 if (typeof window !== "undefined") {
@@ -507,13 +507,13 @@ export default function Home() {
           <ProjectCategorySection
             title="Automations"
             href="/automations"
-            description="Simple workflows that keep client requests moving."
+            description="Behind-the-scenes workflows that turn incoming requests into organized, trackable work."
             projects={automationProjects}
           />
           <ProjectCategorySection
             title="Web applications"
             href="/web-applications"
-            description="Useful digital products, built around everyday tasks."
+            description="Purpose-built tools that solve one specific problem well c;"
             projects={webApplicationProjects}
           />
         </div>
