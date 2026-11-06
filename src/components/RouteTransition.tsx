@@ -5,7 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import DiamondLoader from "@/components/DiamondLoader";
 
 const minimumDisplayTime = 480;
-const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/+$/, "") ?? "";
+const normalizePath = (path: string) => {
+  const normalized = path.replace(/\/+$/, "") || "/";
+  if (basePath && (normalized === basePath || normalized.startsWith(`${basePath}/`))) {
+    return normalized.slice(basePath.length) || "/";
+  }
+  return normalized;
+};
 
 export default function RouteTransition() {
   const pathname = usePathname();

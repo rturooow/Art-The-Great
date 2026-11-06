@@ -20,7 +20,7 @@ export default function ProjectHeader() {
         </Link>
         <nav className="site-nav" aria-label="Primary">
           <Link className="nav-link" href="/#works">Works</Link>
-          <Link className="nav-link" href="/#experience">Experience</Link>
+          <Link className="nav-link" href="/blog">Blog</Link>
           <Link className="nav-link nav-link-contact" href="/#contact">Contact</Link>
         </nav>
       </header>

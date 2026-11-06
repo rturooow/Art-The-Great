@@ -45,7 +45,7 @@ export const profile: Profile = {
   role: "Fullstack Engineer",
   navItems: [
     { label: "Works", href: "#works" },
-    { label: "Experience", href: "#experience" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "#contact" }
   ],
   technologies: [
@@ -113,8 +113,8 @@ export const profile: Profile = {
     {
       type: "github",
       label: "GitHub",
-      value: "github.com/gattosazio",
-      href: "https://github.com/gattosazio"
+      value: "github.com/rturooow",
+      href: "https://github.com/rturooow"
     },
     {
       type: "linkedin",
