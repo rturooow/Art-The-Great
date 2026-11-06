@@ -51,7 +51,6 @@ export default function InquiryFlowPage() {
                   </svg>
                 </a>
               </div>
-              <p className="project-demo-note">Local portfolio demo with fictional inquiry data. Not a live agency intake service.</p>
             </div>
             <ProjectWorkflow />
           </section>
@@ -89,7 +88,6 @@ export default function InquiryFlowPage() {
               ))}
             </div>
           </section>
-          <p className="project-proof-note">This demo shows an inquiry-handling workflow. It does not claim measured lead-conversion results or replace a deployed, privacy-reviewed service.</p>
         </div>
         <ProjectPageFooter />
       </main>
