@@ -6,7 +6,10 @@ import { faOpenai } from "@fortawesome/free-brands-svg-icons";
 import emailjs from "@emailjs/browser";
 import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import FadeArcLoader from "@/components/FadeArcLoader";
+import ProjectCategorySection from "@/components/ProjectCategorySection";
 import { profile } from "@/data/profile";
+import { automationProjects, webApplicationProjects } from "@/data/projects";
 import {
   siCplusplus,
   siCss,
@@ -31,18 +34,12 @@ const emailJsConfig = {
   publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 };
 
-const FlexCarousel = dynamic(() => import("@/components/FlexCarousel"), {
-  ssr: false,
-  loading: () => <div className="works-carousel-loading" aria-hidden="true" />
-});
 const GhostCursor = dynamic(() => import("@/components/GhostCursor"), { ssr: false });
 const loadLanyard = () => import("@/components/Lanyard");
 const Lanyard = dynamic(loadLanyard, {
   ssr: false,
   loading: () => null
 });
-
-const WORKS_PER_PAGE = 5;
 
 const technologyIcons: Partial<Record<string, SimpleIcon>> = {
   JavaScript: siJavascript,
@@ -148,34 +145,12 @@ export default function Home() {
   const formCooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [techPaused, setTechPaused] = useState(false);
   const [ghostCursorReady, setGhostCursorReady] = useState(false);
-  const [worksNearViewport, setWorksNearViewport] = useState(false);
   const [formStatus, setFormStatus] = useState("");
   const [emailCopyStatus, setEmailCopyStatus] = useState("");
   const [formOnCooldown, setFormOnCooldown] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [activeWorkIndex, setActiveWorkIndex] = useState(0);
-  const viewedWorkIndicesRef = useRef(new Set<number>([0]));
-  const [allWorksViewed, setAllWorksViewed] = useState(false);
-  const [worksPage, setWorksPage] = useState(0);
-  const worksSectionRef = useRef<HTMLElement | null>(null);
   const emailContact = profile.contacts.find((contact) => contact.type === "email");
   const socialContacts = profile.contacts.filter((contact) => contact.type !== "email");
-  const activeWork = profile.works[activeWorkIndex] ?? profile.works[0];
-  const worksPageCount = Math.ceil(profile.works.length / WORKS_PER_PAGE);
-  const visibleWorks = profile.works.slice(
-    worksPage * WORKS_PER_PAGE,
-    (worksPage + 1) * WORKS_PER_PAGE
-  );
-  const firstVisibleWork = worksPage * WORKS_PER_PAGE + 1;
-  const lastVisibleWork = Math.min((worksPage + 1) * WORKS_PER_PAGE, profile.works.length);
-  const workCarouselItems = profile.works.map((work) => ({
-    src: withBasePath(work.image.src),
-    alt: work.image.alt,
-    title: work.title,
-    subtitle: work.type,
-    description: work.description,
-    href: work.link.href
-  }));
 
   useEffect(() => {
     return () => {
@@ -208,36 +183,6 @@ export default function Home() {
       document.removeEventListener("gesturechange", preventPinch);
     };
   }, []);
-
-  useEffect(() => {
-    const section = worksSectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setWorksNearViewport(true);
-        observer.disconnect();
-      },
-      { rootMargin: "500px 0px" }
-    );
-    observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleWorkChange = (index: number) => {
-    if (index < 0 || index >= profile.works.length) {
-      return;
-    }
-
-    setActiveWorkIndex(index);
-    viewedWorkIndicesRef.current.add(index);
-
-    if (viewedWorkIndicesRef.current.size >= profile.works.length) {
-      setAllWorksViewed(true);
-    }
-  };
 
   const handleCopyEmail = async () => {
     if (!emailContact) {
@@ -554,164 +499,25 @@ export default function Home() {
         className="content-section"
         id="works"
         aria-labelledby="works-heading"
-        ref={worksSectionRef}
       >
         <div className="section-heading works-heading">
           <h2 id="works-heading">Arts and Crafts</h2>
         </div>
-        <div className="works-viewport">
-          {!allWorksViewed ? (
-            <>
-              <div className="works-carousel-frame">
-                {worksNearViewport ? (
-                  <FlexCarousel
-                    items={workCarouselItems}
-                    preset="arch"
-                    intro="bloom"
-                    cardHeight={0.58}
-                    gap={16}
-                    fit="landscape"
-                    radius={2}
-                    bend={0.16}
-                    reach={0.46}
-                    curl="twist"
-                    dispersion={0.45}
-                    squeeze={0.12}
-                    focusOnClick
-                    captions={false}
-                    captureWheel
-                    ariaLabel="Selected project previews"
-                    onChange={handleWorkChange}
-                  />
-                ) : (
-                  <Image
-                    className="works-carousel-poster"
-                    src={withBasePath(activeWork.image.src)}
-                    alt={activeWork.image.alt}
-                    fill
-                    sizes="(max-width: 680px) 100vw, 90vw"
-                  />
-                )}
-              </div>
-              <div className="works-project-info">
-                {activeWork ? (
-                  <div className="works-project-copy">
-                    <p className="works-project-meta">
-                      {String(activeWorkIndex + 1).padStart(2, "0")} / {String(profile.works.length).padStart(2, "0")}
-                      {" · "}
-                      {activeWork.type}
-                    </p>
-                    <h3>{activeWork.title}</h3>
-                    <p>{activeWork.description}</p>
-                  </div>
-                ) : null}
-                {activeWork ? (
-                  <a className="button button-ghost works-project-link" href={activeWork.link.href} target="_blank" rel="noreferrer">
-                    {activeWork.link.label}
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M7 17 17 7M8 7h9v9"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.8"
-                      />
-                    </svg>
-                  </a>
-                ) : null}
-              </div>
-            </>
-          ) : (
-            <>
-              <ol
-                className="works-project-list"
-                aria-label="Projects on this page"
-                key={worksPage}
-              >
-                {visibleWorks.map((work) => (
-                  <li className="works-project-row" key={work.title}>
-                    <div className="works-project-row-copy">
-                      <p className="works-project-meta">{work.type}</p>
-                      <h3>{work.title}</h3>
-                      <p>{work.description}</p>
-                      <a href={work.link.href} target="_blank" rel="noreferrer">
-                        {work.link.label}
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path
-                            d="M7 17 17 7M8 7h9v9"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="1.8"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-                    <Image
-                      className="works-project-row-image"
-                      src={withBasePath(work.image.src)}
-                      alt={work.image.alt}
-                      width={240}
-                      height={150}
-                    />
-                  </li>
-                ))}
-              </ol>
-              {worksPageCount > 1 ? (
-                <nav className="works-pagination" aria-label="Project list pages">
-                  <p aria-live="polite" aria-atomic="true">
-                    Projects {firstVisibleWork}–{lastVisibleWork} of {profile.works.length}
-                  </p>
-                  <div className="works-pagination-controls">
-                    <button
-                      type="button"
-                      onClick={() => setWorksPage((page) => page - 1)}
-                      disabled={worksPage === 0}
-                      aria-label="Show previous projects"
-                    >
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M19 12H5m0 0 7 7m-7-7 7-7"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.8"
-                        />
-                      </svg>
-                      Previous
-                    </button>
-                    <span>
-                      Page {worksPage + 1} of {worksPageCount}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setWorksPage((page) => page + 1)}
-                      disabled={worksPage === worksPageCount - 1}
-                      aria-label="Show more projects"
-                    >
-                      Next
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M5 12h14m0 0-7-7m7 7-7 7"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.8"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </nav>
-              ) : null}
-            </>
-          )}
+        <div className="project-category-list">
+          <ProjectCategorySection
+            title="Automations"
+            href="/automations"
+            description="Simple workflows that keep client requests moving."
+            projects={automationProjects}
+          />
+          <ProjectCategorySection
+            title="Web applications"
+            href="/web-applications"
+            description="Useful digital products, built around everyday tasks."
+            projects={webApplicationProjects}
+          />
         </div>
       </section>
-
       <section className="content-section contact-section" id="contact">
         <div className="section-heading">
           <h2>Let&apos;s connect</h2>
@@ -742,8 +548,8 @@ export default function Home() {
               </label>
             </div>
             <div className="contact-submit-row">
-              <button className="button button-solid" type="submit" disabled={formOnCooldown || isSending}>
-                {isSending ? "Sending message…" : formOnCooldown ? "Please wait before sending again" : "Send message"}
+              <button className="button button-solid" type="submit" disabled={formOnCooldown || isSending} aria-busy={isSending}>
+                {isSending ? <><FadeArcLoader />Sending message…</> : formOnCooldown ? "Please wait before sending again" : "Send message"}
               </button>
               <p className="contact-form-note">
                 I will read your message and respond as soon as possible. Please allow a few days for a reply.

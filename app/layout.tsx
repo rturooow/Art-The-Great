@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Silkscreen } from "next/font/google";
+import RouteTransition from "@/components/RouteTransition";
 import "./globals.css";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${silkscreen.variable}`}>
+        <RouteTransition />
         {children}
       </body>
     </html>
