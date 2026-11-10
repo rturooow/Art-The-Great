@@ -337,6 +337,11 @@ ul {
   color: var(--black);
 }
 
+.lower-sections .button-solid {
+  border-color: var(--black);
+  color: #fff;
+}
+
 .button-solid:hover {
   background: var(--muted);
 }
@@ -379,6 +384,11 @@ ul {
   padding: 6.5rem 0 0;
 }
 
+.lower-sections {
+  margin-bottom: -5rem;
+  padding-bottom: 5rem;
+}
+
 .section-heading {
   display: flex;
   align-items: flex-end;
@@ -407,6 +417,12 @@ ul {
 
 .works-heading {
   border-bottom: 0;
+}
+
+.lower-sections .works-heading h2 {
+  padding: 0;
+  background: transparent;
+  color: var(--text);
 }
 
 .experience-section > .section-heading {
@@ -739,6 +755,10 @@ ul {
   scrollbar-width: thin;
 }
 
+.lower-sections .project-rail {
+  scrollbar-color: #777 #e5e5e5;
+}
+
 .project-preview {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -827,8 +847,10 @@ ul {
   padding-top: 2rem;
 }
 
-.portfolio-light-page {
+.portfolio-light-page,
+.lower-sections {
   --bg: #fff;
+  --bg-raised: #f4f4f1;
   --surface: #fff;
   --text: #090909;
   --muted: #555;
@@ -840,7 +862,8 @@ ul {
   background: #fff;
 }
 
-.portfolio-light-page ::selection {
+.portfolio-light-page ::selection,
+.lower-sections ::selection {
   color: #fff;
   background: var(--black);
 }
@@ -1608,7 +1631,13 @@ ul {
 .portfolio-light-page .project-breadcrumb a:focus-visible,
 .portfolio-light-page .project-detail-actions a:focus-visible,
 .portfolio-light-page .blog-post-link:focus-visible,
-.portfolio-light-page .social-link:focus-visible {
+.portfolio-light-page .social-link:focus-visible,
+.lower-sections .project-rail:focus-visible,
+.lower-sections .project-preview:focus-visible,
+.lower-sections .project-category-link:focus-visible,
+.lower-sections .contact-email-copy:focus-visible,
+.lower-sections .social-link:focus-visible,
+.lower-sections .button:focus-visible {
   outline-color: var(--black);
 }
 
