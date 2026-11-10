@@ -28,7 +28,7 @@ export default function InquiryFlowPage() {
   return (
     <>
       <ProjectHeader />
-      <main className="page-shell portfolio-page">
+      <main className="page-shell portfolio-page portfolio-light-page">
         <div className="project-page-content project-detail-content">
           <nav className="project-breadcrumb" aria-label="Breadcrumb">
             <Link href="/#works">Works</Link>

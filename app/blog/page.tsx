@@ -29,7 +29,7 @@ export default function BlogPage() {
   return (
     <>
       <ProjectHeader />
-      <main className="page-shell portfolio-page">
+      <main className="page-shell portfolio-page portfolio-light-page">
         <div className="project-page-content">
           <section className="project-category-intro" aria-labelledby="blog-title">
             <h1 id="blog-title">Blog</h1>

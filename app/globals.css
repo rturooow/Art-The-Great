@@ -827,6 +827,28 @@ ul {
   padding-top: 2rem;
 }
 
+.portfolio-light-page {
+  --bg: #fff;
+  --surface: #fff;
+  --text: #090909;
+  --muted: #555;
+  --text-subtle: #666;
+  --line: #e5e5e5;
+  --white: #090909;
+  color-scheme: light;
+  color: var(--text);
+  background: #fff;
+}
+
+.portfolio-light-page ::selection {
+  color: #fff;
+  background: var(--black);
+}
+
+.portfolio-light-page .project-preview-tools {
+  color: var(--black);
+}
+
 .project-page-content {
   width: min(calc(100% - 3rem), 1080px);
   margin-inline: auto;
@@ -1059,6 +1081,17 @@ ul {
   transform: none;
 }
 
+.portfolio-light-page .project-detail-actions .button-solid {
+  border-color: var(--black);
+  background: var(--black);
+  color: #fff;
+}
+
+.portfolio-light-page .project-detail-actions .button-solid:hover {
+  background: var(--black-hover);
+  color: #fff;
+}
+
 .project-demo-note,
 .project-proof-note {
   max-width: 68ch;
@@ -1124,6 +1157,10 @@ ul {
   filter: drop-shadow(0 0 4px var(--white));
 }
 
+.portfolio-light-page .project-flow-steps li:not(:last-child)::after {
+  filter: drop-shadow(0 0 3px rgb(0 0 0 / 18%));
+}
+
 .project-flow-steps li:last-child {
   padding-bottom: 0;
   border-bottom: 0;
@@ -1148,6 +1185,10 @@ ul {
   animation: workflow-node 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
+.portfolio-light-page .project-flow-active .project-flow-index {
+  animation-name: workflow-node-light;
+}
+
 .project-flow-active li:not(:last-child)::after {
   animation: workflow-trail 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
@@ -1163,6 +1204,11 @@ ul {
 @keyframes workflow-node {
   0%, 32%, 100% { border-color: var(--line); outline-color: transparent; outline-offset: 0; background: var(--surface); color: var(--text-subtle); transform: scale(1); }
   10%, 25% { border-color: var(--white); outline: 1px solid var(--muted); outline-offset: 3px; background: var(--white); color: var(--black); transform: scale(1.08); }
+}
+
+@keyframes workflow-node-light {
+  0%, 32%, 100% { border-color: var(--line); outline-color: transparent; outline-offset: 0; background: var(--surface); color: var(--text-subtle); transform: scale(1); }
+  10%, 25% { border-color: var(--black); outline: 1px solid var(--muted); outline-offset: 3px; background: var(--black); color: #fff; transform: scale(1.08); }
 }
 
 @keyframes workflow-trail {
@@ -1549,6 +1595,7 @@ ul {
 .project-category-link:focus-visible,
 .project-breadcrumb a:focus-visible,
 .project-detail-actions a:focus-visible,
+.blog-post-link:focus-visible,
 .contact-email-copy:focus-visible,
 .social-link:focus-visible {
   outline: 2px solid #f1f1ee;
@@ -1556,7 +1603,12 @@ ul {
 }
 
 .site-header-shell .nav-link:focus-visible,
-.hero .button:focus-visible {
+.hero .button:focus-visible,
+.portfolio-light-page .project-preview:focus-visible,
+.portfolio-light-page .project-breadcrumb a:focus-visible,
+.portfolio-light-page .project-detail-actions a:focus-visible,
+.portfolio-light-page .blog-post-link:focus-visible,
+.portfolio-light-page .social-link:focus-visible {
   outline-color: var(--black);
 }
 
