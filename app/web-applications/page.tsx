@@ -13,7 +13,7 @@ export default function WebApplicationsPage() {
   return (
     <>
       <ProjectHeader />
-      <main className="page-shell portfolio-page">
+      <main className="page-shell portfolio-page portfolio-light-page">
         <div className="project-page-content">
           <nav className="project-breadcrumb" aria-label="Breadcrumb">
             <Link href="/#works">Works</Link>

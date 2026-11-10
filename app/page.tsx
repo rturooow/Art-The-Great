@@ -34,7 +34,6 @@ const emailJsConfig = {
   publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 };
 
-const GhostCursor = dynamic(() => import("@/components/GhostCursor"), { ssr: false });
 const loadLanyard = () => import("@/components/Lanyard");
 const Lanyard = dynamic(loadLanyard, {
   ssr: false,
@@ -144,7 +143,6 @@ export default function Home() {
   const formCooldownUntilRef = useRef(0);
   const formCooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [techPaused, setTechPaused] = useState(false);
-  const [ghostCursorReady, setGhostCursorReady] = useState(false);
   const [formStatus, setFormStatus] = useState("");
   const [emailCopyStatus, setEmailCopyStatus] = useState("");
   const [formOnCooldown, setFormOnCooldown] = useState(false);
@@ -157,17 +155,6 @@ export default function Home() {
       if (formCooldownTimerRef.current !== null) {
         clearTimeout(formCooldownTimerRef.current);
       }
-    };
-  }, []);
-
-  useEffect(() => {
-    const pointerSupportsCursor = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const cursorTimer = pointerSupportsCursor
-      ? window.setTimeout(() => setGhostCursorReady(true), 1200)
-      : null;
-
-    return () => {
-      if (cursorTimer !== null) window.clearTimeout(cursorTimer);
     };
   }, []);
 
@@ -309,44 +296,11 @@ export default function Home() {
 
       <main className="page-shell">
         <div className="intro-stack-surface">
-          {ghostCursorReady ? (
-            <GhostCursor
-              color="#d6d6d3"
-              size={36}
-              trailLength={16}
-              inertia={0.28}
-              turbulence={0.35}
-              drift={0.12}
-              detail={0.7}
-              brightness={0.6}
-              bloomStrength={0.2}
-              bloomRadius={0.35}
-              grainIntensity={0.02}
-              fadeDelayMs={180}
-              fadeDurationMs={700}
-              clickPuff={false}
-              intro={false}
-              targetPixels={300000}
-              maxDevicePixelRatio={1.5}
-              zIndex={10}
-            />
-          ) : null}
           <section
             className="hero"
             id="home"
             aria-label="Introduction"
           >
-            <div className="hero-artwork" aria-hidden="true">
-              <Image
-                src={withBasePath("/first_page.png")}
-                alt=""
-                fill
-                priority
-                sizes="100vw"
-                className="hero-art"
-              />
-            </div>
-            <div className="hero-shade" aria-hidden="true" />
             <div className="hero-layout">
               <div className="hero-content">
                 <h1>{profile.intro.title}</h1>

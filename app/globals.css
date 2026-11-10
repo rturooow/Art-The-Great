@@ -7,6 +7,9 @@
   --muted: #b8b8b5;
   --text-subtle: #858582;
   --line: #383836;
+  --light-divider: #e5e5e5;
+  --light-muted: #555555;
+  --black-hover: #303030;
   --white: #f4f4f1;
   --black: #090909;
   --max-width: 1200px;
@@ -65,6 +68,12 @@ body {
   background: var(--white);
 }
 
+.site-header-shell ::selection,
+.hero ::selection {
+  color: #fff;
+  background: var(--black);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -98,9 +107,9 @@ ul {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: linear-gradient(100deg, var(--white) 0%, var(--muted) 50%, var(--white) 100%);
-  color: var(--bg-raised);
-  border-bottom: 1px solid var(--line);
+  background: #fff;
+  color: var(--black);
+  border-bottom: 1px solid var(--light-divider);
 }
 
 .site-header {
@@ -133,7 +142,7 @@ ul {
 }
 
 .brand-name {
-  color: var(--bg-raised);
+  color: var(--black);
   font-family: var(--font-pixel), sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
@@ -152,7 +161,7 @@ ul {
 .nav-link {
   position: relative;
   padding: 0.65rem 0.8rem;
-  color: #383836;
+  color: var(--black);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -184,7 +193,7 @@ ul {
 }
 
 .nav-link-contact {
-  color: #111;
+  color: var(--black);
 }
 
 .page-shell {
@@ -216,34 +225,8 @@ ul {
   align-items: stretch;
   overflow: visible;
   isolation: isolate;
-  background: #090909;
-}
-
-.hero-artwork,
-.hero-shade {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-}
-
-.hero-artwork {
-  overflow: hidden;
-  background: #090909;
-}
-
-.hero-art {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: grayscale(1);
-}
-
-.hero-shade {
-  background:
-    linear-gradient(90deg, #090909 0%, rgb(9 9 9 / 94%) 26%, rgb(9 9 9 / 55%) 51%, rgb(9 9 9 / 8%) 100%),
-    linear-gradient(0deg, rgb(9 9 9 / 58%) 0%, transparent 36%);
-  pointer-events: none;
+  color: var(--black);
+  background: #fff;
 }
 
 .hero-layout {
@@ -282,7 +265,7 @@ ul {
   position: absolute;
   right: 0;
   bottom: 0.8rem;
-  color: var(--muted);
+  color: var(--light-muted);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-align: right;
@@ -301,7 +284,7 @@ ul {
 
 .hero-role {
   margin-top: 1.15rem;
-  color: var(--white);
+  color: var(--black);
   font-family: var(--font-pixel), sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -312,7 +295,7 @@ ul {
 .lead {
   max-width: 62ch;
   margin-top: 1.25rem;
-  color: var(--white);
+  color: var(--black);
   font-size: 1rem;
   line-height: 1.8;
 }
@@ -354,6 +337,11 @@ ul {
   color: var(--black);
 }
 
+.lower-sections .button-solid {
+  border-color: var(--black);
+  color: #fff;
+}
+
 .button-solid:hover {
   background: var(--muted);
 }
@@ -368,10 +356,37 @@ ul {
   color: var(--black);
 }
 
+.hero-actions .button-solid {
+  border-color: var(--black);
+  background: var(--black);
+  color: #fff;
+}
+
+.hero-actions .button-solid:hover {
+  background: var(--black-hover);
+  color: #fff;
+}
+
+.hero-actions .button-ghost {
+  border-color: var(--black);
+  background: #fff;
+  color: var(--black);
+}
+
+.hero-actions .button-ghost:hover {
+  background: var(--black);
+  color: #fff;
+}
+
 .content-section {
   width: min(calc(100% - 3rem), var(--max-width));
   margin-inline: auto;
   padding: 6.5rem 0 0;
+}
+
+.lower-sections {
+  margin-bottom: -5rem;
+  padding-bottom: 5rem;
 }
 
 .section-heading {
@@ -401,7 +416,15 @@ ul {
 }
 
 .works-heading {
+  justify-content: center;
   border-bottom: 0;
+  text-align: center;
+}
+
+.lower-sections .works-heading h2 {
+  padding: 0;
+  background: transparent;
+  color: var(--text);
 }
 
 .experience-section > .section-heading {
@@ -734,6 +757,10 @@ ul {
   scrollbar-width: thin;
 }
 
+.lower-sections .project-rail {
+  scrollbar-color: #777 #e5e5e5;
+}
+
 .project-preview {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -820,6 +847,31 @@ ul {
 .portfolio-page {
   min-height: calc(100svh - 76px);
   padding-top: 2rem;
+}
+
+.portfolio-light-page,
+.lower-sections {
+  --bg: #fff;
+  --bg-raised: #f4f4f1;
+  --surface: #fff;
+  --text: #090909;
+  --muted: #555;
+  --text-subtle: #666;
+  --line: #e5e5e5;
+  --white: #090909;
+  color-scheme: light;
+  color: var(--text);
+  background: #fff;
+}
+
+.portfolio-light-page ::selection,
+.lower-sections ::selection {
+  color: #fff;
+  background: var(--black);
+}
+
+.portfolio-light-page .project-preview-tools {
+  color: var(--black);
 }
 
 .project-page-content {
@@ -1054,6 +1106,17 @@ ul {
   transform: none;
 }
 
+.portfolio-light-page .project-detail-actions .button-solid {
+  border-color: var(--black);
+  background: var(--black);
+  color: #fff;
+}
+
+.portfolio-light-page .project-detail-actions .button-solid:hover {
+  background: var(--black-hover);
+  color: #fff;
+}
+
 .project-demo-note,
 .project-proof-note {
   max-width: 68ch;
@@ -1119,6 +1182,10 @@ ul {
   filter: drop-shadow(0 0 4px var(--white));
 }
 
+.portfolio-light-page .project-flow-steps li:not(:last-child)::after {
+  filter: drop-shadow(0 0 3px rgb(0 0 0 / 18%));
+}
+
 .project-flow-steps li:last-child {
   padding-bottom: 0;
   border-bottom: 0;
@@ -1143,6 +1210,10 @@ ul {
   animation: workflow-node 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
+.portfolio-light-page .project-flow-active .project-flow-index {
+  animation-name: workflow-node-light;
+}
+
 .project-flow-active li:not(:last-child)::after {
   animation: workflow-trail 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
@@ -1158,6 +1229,11 @@ ul {
 @keyframes workflow-node {
   0%, 32%, 100% { border-color: var(--line); outline-color: transparent; outline-offset: 0; background: var(--surface); color: var(--text-subtle); transform: scale(1); }
   10%, 25% { border-color: var(--white); outline: 1px solid var(--muted); outline-offset: 3px; background: var(--white); color: var(--black); transform: scale(1.08); }
+}
+
+@keyframes workflow-node-light {
+  0%, 32%, 100% { border-color: var(--line); outline-color: transparent; outline-offset: 0; background: var(--surface); color: var(--text-subtle); transform: scale(1); }
+  10%, 25% { border-color: var(--black); outline: 1px solid var(--muted); outline-offset: 3px; background: var(--black); color: #fff; transform: scale(1.08); }
 }
 
 @keyframes workflow-trail {
@@ -1544,10 +1620,27 @@ ul {
 .project-category-link:focus-visible,
 .project-breadcrumb a:focus-visible,
 .project-detail-actions a:focus-visible,
+.blog-post-link:focus-visible,
 .contact-email-copy:focus-visible,
 .social-link:focus-visible {
   outline: 2px solid #f1f1ee;
   outline-offset: 4px;
+}
+
+.site-header-shell .nav-link:focus-visible,
+.hero .button:focus-visible,
+.portfolio-light-page .project-preview:focus-visible,
+.portfolio-light-page .project-breadcrumb a:focus-visible,
+.portfolio-light-page .project-detail-actions a:focus-visible,
+.portfolio-light-page .blog-post-link:focus-visible,
+.portfolio-light-page .social-link:focus-visible,
+.lower-sections .project-rail:focus-visible,
+.lower-sections .project-preview:focus-visible,
+.lower-sections .project-category-link:focus-visible,
+.lower-sections .contact-email-copy:focus-visible,
+.lower-sections .social-link:focus-visible,
+.lower-sections .button:focus-visible {
+  outline-color: var(--black);
 }
 
 @media (max-width: 900px) {
@@ -1646,12 +1739,6 @@ ul {
   .hero-lanyard-stage .lanyard {
     left: calc(-20vw + 1.5rem);
     right: calc(-20vw - 1.5rem);
-  }
-
-  .hero-shade {
-    background:
-      linear-gradient(0deg, #090909 0%, rgb(9 9 9 / 86%) 32%, rgb(9 9 9 / 25%) 76%, rgb(9 9 9 / 12%) 100%),
-      linear-gradient(90deg, rgb(9 9 9 / 30%), transparent);
   }
 
   .hero-content {
