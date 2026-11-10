@@ -416,7 +416,9 @@ ul {
 }
 
 .works-heading {
+  justify-content: center;
   border-bottom: 0;
+  text-align: center;
 }
 
 .lower-sections .works-heading h2 {
