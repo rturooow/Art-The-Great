@@ -129,14 +129,14 @@ ul {
   align-items: center;
   justify-self: start;
   width: max-content;
-  height: 45px;
+  height: 60px;
   gap: 0.65rem;
 }
 
 .brand-logo {
-  flex: 0 0 144px;
-  width: 144px;
-  height: 45px;
+  flex: 0 0 190px;
+  width: 190px;
+  height: 60px;
   overflow: hidden;
   object-fit: cover;
   object-position: center 51%;
@@ -1717,15 +1717,15 @@ ul {
 
   .brand {
     width: max-content;
-    height: 36px;
+    height: 46px;
     justify-self: center;
     gap: 0.45rem;
   }
 
   .brand-logo {
-    flex-basis: 118px;
-    width: 118px;
-    height: 36px;
+    flex-basis: 156px;
+    width: 156px;
+    height: 46px;
   }
 
   .site-nav {
