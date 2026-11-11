@@ -278,7 +278,6 @@ export default function Home() {
               className="brand-logo"
               priority
             />
-            <span className="brand-name">Arturo Inc.</span>
           </a>
           <nav className="site-nav" aria-label="Primary">
             {profile.navItems.map((item) => (
@@ -324,6 +323,7 @@ export default function Home() {
                   anchor={0.63}
                   strapLength={0.35}
                   breeze={0.82}
+                  strapColor="#E7E4DA"
                   intro
                 />
                 <p className="hero-lanyard-hint" aria-hidden="true">
@@ -339,7 +339,7 @@ export default function Home() {
           >
             <Image
               className="tech-section-background"
-              src={withBasePath("/about_me.webp")}
+              src={withBasePath("/pexels-karola-g-6275994.jpg")}
               alt=""
               fill
               sizes="100vw"

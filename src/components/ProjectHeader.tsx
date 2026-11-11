@@ -16,7 +16,6 @@ export default function ProjectHeader() {
             className="brand-logo"
             priority
           />
-          <span className="brand-name">Arturo Inc.</span>
         </Link>
         <nav className="site-nav" aria-label="Primary">
           <Link className="nav-link" href="/#works">Works</Link>
