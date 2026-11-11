@@ -17,7 +17,7 @@ const silkscreen = Silkscreen({
 });
 
 export const metadata: Metadata = {
-  title: "ARTURO",
+  title: "Art Sumondong | Portfolio",
   description: "Portfolio, projects, and contact information for Art Sumondong.",
   icons: {
     icon: `${publicBasePath}/favicon.ico`,
