@@ -47,7 +47,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
@@ -1520,7 +1520,7 @@ ul {
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgb(0 0 128 / 92%);
+  background: rgb(255 255 255 / 90%);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1536,7 +1536,7 @@ ul {
 .loading-diamond {
   width: 3rem;
   height: 3rem;
-  color: var(--white);
+  color: var(--navy);
   overflow: visible;
 }
 
