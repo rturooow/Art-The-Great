@@ -159,6 +159,40 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-reveal]"));
+    if (!revealElements.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const element = entry.target as HTMLElement;
+        element.classList.remove("scroll-reveal-pending");
+        observer.unobserve(element);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    const revealFocusedElement = (event: FocusEvent) => {
+      if (!(event.target instanceof Element)) return;
+      const element = event.target.closest<HTMLElement>("[data-scroll-reveal].scroll-reveal-pending");
+      if (!element) return;
+      element.classList.remove("scroll-reveal-pending");
+      observer.unobserve(element);
+    };
+
+    revealElements.forEach((element) => {
+      element.classList.add("scroll-reveal-pending");
+      observer.observe(element);
+    });
+    document.addEventListener("focusin", revealFocusedElement);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("focusin", revealFocusedElement);
+      revealElements.forEach((element) => element.classList.remove("scroll-reveal-pending"));
+    };
+  }, []);
+
+  useEffect(() => {
     if (!window.matchMedia("(pointer: coarse)").matches) return;
 
     const preventPinch = (event: Event) => event.preventDefault();
@@ -345,7 +379,7 @@ export default function Home() {
               sizes="100vw"
               loading="lazy"
             />
-            <div className="section-heading tech-heading">
+            <div className="section-heading tech-heading" data-scroll-reveal="up">
               <h2 id="tech-heading">Tools of the trade</h2>
               <button
                 className="tech-toggle"
@@ -393,27 +427,31 @@ export default function Home() {
           <h2 id="works-heading">Arts and Crafts</h2>
         </div>
         <div className="project-category-list">
-          <ProjectCategorySection
-            title="Automations"
-            href="/automations"
-            description="Behind-the-scenes workflows that turn incoming requests into organized, trackable work."
-            projects={automationProjects}
-          />
-          <ProjectCategorySection
-            title="Web applications"
-            href="/web-applications"
-            description="Purpose-built tools that solve one specific problem well c;"
-            projects={webApplicationProjects}
-          />
+          <div data-scroll-reveal="up">
+            <ProjectCategorySection
+              title="Automations"
+              href="/automations"
+              description="Behind-the-scenes workflows that turn incoming requests into organized, trackable work."
+              projects={automationProjects}
+            />
+          </div>
+          <div data-scroll-reveal="up">
+            <ProjectCategorySection
+              title="Web applications"
+              href="/web-applications"
+              description="Purpose-built tools that solve one specific problem well c;"
+              projects={webApplicationProjects}
+            />
+          </div>
         </div>
       </section>
       <section className="content-section contact-section" id="contact">
-        <div className="section-heading">
+        <div className="section-heading" data-scroll-reveal="up">
           <h2>Let&apos;s connect</h2>
           <p className="contact-note">Open to work, collaboration, and freelance projects.</p>
         </div>
         <div className="contact-list">
-          <form className="contact-form" onSubmit={handleInquirySubmit} aria-busy={isSending}>
+          <form className="contact-form" data-scroll-reveal="left" onSubmit={handleInquirySubmit} aria-busy={isSending}>
             <div className="contact-fields">
               <label className="contact-field contact-trap" aria-hidden="true">
                 <span>Leave this field empty</span>
@@ -421,19 +459,19 @@ export default function Home() {
               </label>
               <label className="contact-field">
                 <span>Your name</span>
-                <input autoComplete="name" name="name" required minLength={2} maxLength={80} />
+                <input autoComplete="name" name="name" placeholder=" " required minLength={2} maxLength={80} />
               </label>
               <label className="contact-field">
                 <span>Your email</span>
-                <input autoComplete="email" name="email" type="email" required maxLength={254} />
+                <input autoComplete="email" name="email" type="email" placeholder=" " required maxLength={254} />
               </label>
               <label className="contact-field contact-field-full">
                 <span>Subject</span>
-                <input name="subject" required minLength={3} maxLength={120} />
+                <input name="subject" placeholder=" " required minLength={3} maxLength={120} />
               </label>
               <label className="contact-field contact-field-full">
                 <span>Your message</span>
-                <textarea name="message" rows={6} required minLength={20} maxLength={5000} />
+                <textarea name="message" placeholder=" " rows={6} required minLength={20} maxLength={5000} />
               </label>
             </div>
             <div className="contact-submit-row">
@@ -449,7 +487,7 @@ export default function Home() {
             </p>
           </form>
 
-          <div className="contact-details">
+          <div className="contact-details" data-scroll-reveal="right">
             {emailContact ? (
               <div className="contact-email-link">
                 <span>Email address</span>

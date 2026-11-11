@@ -403,6 +403,31 @@ ul {
   color: var(--navy);
 }
 
+[data-scroll-reveal] {
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+[data-scroll-reveal].scroll-reveal-pending {
+  opacity: 0;
+}
+
+[data-scroll-reveal="up"].scroll-reveal-pending {
+  transform: translateY(10px);
+}
+
+[data-scroll-reveal="left"].scroll-reveal-pending {
+  transform: translateX(-8px);
+}
+
+[data-scroll-reveal="right"].scroll-reveal-pending {
+  transform: translateX(8px);
+}
+
+.project-category-list > [data-scroll-reveal]:nth-child(2),
+.contact-list > [data-scroll-reveal="right"] {
+  transition-delay: 100ms;
+}
+
 .works-heading h2 {
   display: inline-block;
   padding: 0.08em 0.12em;
@@ -1417,11 +1442,26 @@ ul {
 }
 
 .contact-field {
-  display: grid;
-  gap: 0.45rem;
+  position: relative;
+  display: block;
+  min-width: 0;
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.contact-field > span {
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  left: 0.72rem;
+  padding: 0 0.2rem;
+  background: var(--bg-raised);
+  color: var(--muted);
+  line-height: 1;
+  pointer-events: none;
+  transform-origin: left center;
+  transition: top 160ms ease, left 160ms ease, color 160ms ease, font-size 160ms ease;
 }
 
 .contact-field-full {
@@ -1432,7 +1472,7 @@ ul {
 .contact-field textarea {
   width: 100%;
   min-width: 0;
-  padding: 0.8rem 0.9rem;
+  padding: 1.15rem 0.9rem 0.55rem;
   border: 1px solid var(--line);
   border-radius: 2px;
   background: var(--bg-raised);
@@ -1443,7 +1483,17 @@ ul {
 
 .contact-field textarea {
   min-height: 10rem;
+  padding-top: 1.35rem;
   resize: vertical;
+}
+
+.contact-field:focus-within > span,
+.contact-field:has(> input:not(:placeholder-shown)) > span,
+.contact-field:has(> textarea:not(:placeholder-shown)) > span {
+  top: -0.4rem;
+  left: 0.72rem;
+  color: var(--navy);
+  font-size: 0.75rem;
 }
 
 .contact-field input:focus-visible,
@@ -1451,6 +1501,12 @@ ul {
   border-color: var(--navy);
   outline: 2px solid var(--navy);
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-field > span {
+    transition: none;
+  }
 }
 
 .contact-submit-row {
@@ -1715,6 +1771,11 @@ ul {
     gap: 0.1rem;
   }
 
+  [data-scroll-reveal="left"].scroll-reveal-pending,
+  [data-scroll-reveal="right"].scroll-reveal-pending {
+    transform: translateY(10px);
+  }
+
   .brand {
     width: max-content;
     height: 46px;
@@ -1960,6 +2021,11 @@ ul {
 
   .loading-diamond-pixel {
     opacity: 1;
+  }
+
+  [data-scroll-reveal].scroll-reveal-pending {
+    opacity: 1;
+    transform: none;
   }
 
   .tech-track {

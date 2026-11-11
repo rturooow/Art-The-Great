@@ -41,7 +41,7 @@ type Profile = {
 };
 
 export const profile: Profile = {
-  name: "ARTURO",
+  name: "Arturo",
   role: "Fullstack Engineer",
   navItems: [
     { label: "Works", href: "#works" },
