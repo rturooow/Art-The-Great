@@ -1,16 +1,18 @@
 :root {
-  color-scheme: dark;
-  --bg: #090909;
-  --bg-raised: #141414;
-  --surface: #1b1b1b;
-  --text: #f0f0ee;
-  --muted: #b8b8b5;
-  --text-subtle: #858582;
-  --line: #383836;
+  color-scheme: light;
+  --navy: #000080;
+  --navy-hover: #000066;
+  --gold: #f2c14e;
+  --bg: #fff;
+  --bg-raised: #fff;
+  --surface: #fff;
+  --text: #090909;
+  --muted: #555;
+  --text-subtle: #666;
+  --line: #e5e5e5;
   --light-divider: #e5e5e5;
   --light-muted: #555555;
-  --black-hover: #303030;
-  --white: #f4f4f1;
+  --white: #fff;
   --black: #090909;
   --max-width: 1200px;
 }
@@ -36,18 +38,17 @@
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
-  scrollbar-color: #777 #111;
+  scrollbar-color: var(--navy) var(--bg-raised);
 }
 
 body {
   min-width: 320px;
   margin: 0;
   overflow-x: hidden;
-  background:
-    radial-gradient(ellipse at 50% 34rem, #1d1d1d 0, transparent 48rem),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
   font-size: 1rem;
@@ -64,14 +65,14 @@ body {
 }
 
 ::selection {
-  color: var(--black);
-  background: var(--white);
+  color: var(--white);
+  background: var(--navy);
 }
 
 .site-header-shell ::selection,
 .hero ::selection {
-  color: #fff;
-  background: var(--black);
+  color: var(--white);
+  background: var(--navy);
 }
 
 a {
@@ -108,7 +109,7 @@ ul {
   top: 0;
   z-index: 20;
   background: #fff;
-  color: var(--black);
+  color: var(--navy);
   border-bottom: 1px solid var(--light-divider);
 }
 
@@ -128,26 +129,18 @@ ul {
   align-items: center;
   justify-self: start;
   width: max-content;
-  height: 45px;
+  height: 60px;
   gap: 0.65rem;
 }
 
 .brand-logo {
-  flex: 0 0 144px;
-  width: 144px;
-  height: 45px;
+  flex: 0 0 190px;
+  width: 190px;
+  height: 60px;
   overflow: hidden;
   object-fit: cover;
   object-position: center 51%;
-}
-
-.brand-name {
-  color: var(--black);
-  font-family: var(--font-pixel), sans-serif;
-  font-size: 0.72rem;
-  font-weight: 400;
-  line-height: 1.4;
-  white-space: nowrap;
+  filter: drop-shadow(0 2px 5px rgb(9 9 9 / 22%));
 }
 
 .site-nav {
@@ -161,7 +154,7 @@ ul {
 .nav-link {
   position: relative;
   padding: 0.65rem 0.8rem;
-  color: var(--black);
+  color: var(--navy);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -184,7 +177,7 @@ ul {
 
 .nav-link:hover,
 .nav-link:focus-visible {
-  color: var(--black);
+  color: var(--navy-hover);
 }
 
 .nav-link:hover::after,
@@ -193,7 +186,7 @@ ul {
 }
 
 .nav-link-contact {
-  color: var(--black);
+  color: var(--navy);
 }
 
 .page-shell {
@@ -225,7 +218,7 @@ ul {
   align-items: stretch;
   overflow: visible;
   isolation: isolate;
-  color: var(--black);
+  color: var(--text);
   background: #fff;
 }
 
@@ -280,11 +273,13 @@ ul {
   line-height: 1.24;
   letter-spacing: 0.015em;
   text-wrap: balance;
+  color: var(--navy);
+  text-shadow: 0 2px 6px rgb(9 9 9 / 16%);
 }
 
 .hero-role {
   margin-top: 1.15rem;
-  color: var(--black);
+  color: var(--navy);
   font-family: var(--font-pixel), sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -295,7 +290,7 @@ ul {
 .lead {
   max-width: 62ch;
   margin-top: 1.25rem;
-  color: var(--black);
+  color: var(--text);
   font-size: 1rem;
   line-height: 1.8;
 }
@@ -313,7 +308,7 @@ ul {
   align-items: center;
   justify-content: center;
   padding: 0.8rem 1.15rem;
-  border: 1px solid var(--muted);
+  border: 1px solid var(--navy);
   border-radius: 2px;
   font-size: 0.9rem;
   font-weight: 700;
@@ -333,49 +328,49 @@ ul {
 }
 
 .button-solid {
-  background: var(--white);
-  color: var(--black);
-}
-
-.lower-sections .button-solid {
-  border-color: var(--black);
-  color: #fff;
-}
-
-.button-solid:hover {
-  background: var(--muted);
-}
-
-.button-ghost {
-  background: rgb(9 9 9 / 28%);
+  background: var(--navy);
   color: var(--white);
 }
 
-.button-ghost:hover {
+.lower-sections .button-solid {
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.button-solid:hover {
+  background: var(--navy-hover);
+}
+
+.button-ghost {
   background: var(--white);
-  color: var(--black);
+  color: var(--navy);
+}
+
+.button-ghost:hover {
+  background: var(--navy);
+  color: var(--white);
 }
 
 .hero-actions .button-solid {
-  border-color: var(--black);
-  background: var(--black);
-  color: #fff;
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--gold);
 }
 
 .hero-actions .button-solid:hover {
-  background: var(--black-hover);
-  color: #fff;
+  background: var(--navy-hover);
+  color: var(--gold);
 }
 
 .hero-actions .button-ghost {
-  border-color: var(--black);
-  background: #fff;
-  color: var(--black);
+  border-color: var(--navy);
+  background: var(--white);
+  color: var(--navy);
 }
 
 .hero-actions .button-ghost:hover {
-  background: var(--black);
-  color: #fff;
+  background: var(--navy);
+  color: var(--white);
 }
 
 .content-section {
@@ -405,6 +400,7 @@ ul {
   line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
+  color: var(--navy);
 }
 
 .works-heading h2 {
@@ -424,7 +420,16 @@ ul {
 .lower-sections .works-heading h2 {
   padding: 0;
   background: transparent;
-  color: var(--text);
+  color: var(--navy);
+  text-shadow: 0 2px 6px rgb(9 9 9 / 14%);
+}
+
+.contact-section > .section-heading {
+  border-bottom: 0;
+}
+
+.contact-section > .section-heading h2 {
+  text-shadow: 0 2px 6px rgb(9 9 9 / 14%);
 }
 
 .experience-section > .section-heading {
@@ -498,8 +503,8 @@ ul {
 }
 
 .experience-item[data-current="true"] .experience-marker {
-  border-color: var(--white);
-  background: var(--white);
+  border-color: var(--navy);
+  background: var(--navy);
 }
 
 .experience-logo-frame {
@@ -529,7 +534,7 @@ ul {
 }
 
 .experience-details h3 {
-  color: var(--white);
+  color: var(--navy);
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.35;
@@ -569,6 +574,7 @@ ul {
   margin-top: 0;
   padding: 5rem max(1.5rem, calc((100% - var(--max-width)) / 2)) 4rem;
   overflow: hidden;
+  color: var(--white);
 }
 
 .tech-section::after {
@@ -581,7 +587,6 @@ ul {
 
 .tech-section-background {
   z-index: -1;
-  filter: grayscale(1);
   object-fit: cover;
   object-position: center 45%;
 }
@@ -597,13 +602,18 @@ ul {
   border-bottom: 0;
 }
 
+.tech-section .section-heading h2 {
+  color: var(--white);
+  text-shadow: 0 2px 6px rgb(9 9 9 / 42%);
+}
+
 .tech-toggle {
   min-height: 40px;
   padding: 0.45rem 0;
   border: 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgb(255 255 255 / 72%);
   background: transparent;
-  color: var(--muted);
+  color: var(--white);
   cursor: pointer;
   font-size: 0.8rem;
 }
@@ -644,8 +654,9 @@ ul {
   align-items: center;
   gap: 0.65rem;
   padding: 0.7rem 0.95rem;
-  border: 1px solid var(--line);
-  color: var(--text);
+  border: 1px solid rgb(255 255 255 / 72%);
+  background: transparent;
+  color: var(--white);
   font-size: 0.9rem;
   white-space: nowrap;
 }
@@ -687,7 +698,6 @@ ul {
   display: grid;
   gap: 1rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--line);
 }
 
 .project-category-heading {
@@ -705,6 +715,7 @@ ul {
 .project-category-heading h3 {
   font-size: 1.2rem;
   line-height: 1.35;
+  color: var(--navy);
 }
 
 .project-category-heading p,
@@ -725,11 +736,11 @@ ul {
   align-items: center;
   gap: 0.55rem;
   flex: 0 0 auto;
-  color: var(--text);
+  color: var(--navy);
   font-size: 0.82rem;
   font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: #777;
+  text-decoration-color: var(--navy);
   text-underline-offset: 0.25em;
 }
 
@@ -753,12 +764,12 @@ ul {
   padding: 0.25rem 0 0.75rem;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scrollbar-color: #777 #111;
+  scrollbar-color: var(--navy) var(--bg-raised);
   scrollbar-width: thin;
 }
 
 .lower-sections .project-rail {
-  scrollbar-color: #777 #e5e5e5;
+  scrollbar-color: var(--navy) var(--bg-raised);
 }
 
 .project-preview {
@@ -782,6 +793,7 @@ ul {
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.3;
+  color: var(--navy);
 }
 
 .project-preview-summary {
@@ -825,8 +837,7 @@ ul {
   justify-content: center;
   gap: 0.7rem;
   padding-top: 0.8rem;
-  border-top: 1px solid var(--line);
-  color: var(--white);
+  color: var(--navy);
 }
 
 .project-preview-tools > span {
@@ -838,7 +849,10 @@ ul {
   height: 1rem;
 }
 
-.project-category-empty,
+.project-category-empty {
+  padding: 1.2rem 0;
+}
+
 .project-empty-state {
   padding: 1.2rem 0;
   border-top: 1px solid var(--line);
@@ -851,27 +865,27 @@ ul {
 
 .portfolio-light-page,
 .lower-sections {
-  --bg: #fff;
-  --bg-raised: #f4f4f1;
-  --surface: #fff;
-  --text: #090909;
-  --muted: #555;
-  --text-subtle: #666;
-  --line: #e5e5e5;
-  --white: #090909;
   color-scheme: light;
   color: var(--text);
-  background: #fff;
+  background: var(--bg);
 }
 
 .portfolio-light-page ::selection,
 .lower-sections ::selection {
-  color: #fff;
-  background: var(--black);
+  color: var(--white);
+  background: var(--navy);
+}
+
+.portfolio-light-page h1,
+.portfolio-light-page h2,
+.portfolio-light-page h3,
+.lower-sections h2,
+.lower-sections h3 {
+  color: var(--navy);
 }
 
 .portfolio-light-page .project-preview-tools {
-  color: var(--black);
+  color: var(--navy);
 }
 
 .project-page-content {
@@ -889,9 +903,9 @@ ul {
 }
 
 .project-breadcrumb a {
-  color: var(--muted);
+  color: var(--navy);
   text-decoration: underline;
-  text-decoration-color: #666;
+  text-decoration-color: var(--navy);
 }
 
 .project-category-intro {
@@ -1107,14 +1121,14 @@ ul {
 }
 
 .portfolio-light-page .project-detail-actions .button-solid {
-  border-color: var(--black);
-  background: var(--black);
-  color: #fff;
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--white);
 }
 
 .portfolio-light-page .project-detail-actions .button-solid:hover {
-  background: var(--black-hover);
-  color: #fff;
+  background: var(--navy-hover);
+  color: var(--white);
 }
 
 .project-demo-note,
@@ -1183,7 +1197,10 @@ ul {
 }
 
 .portfolio-light-page .project-flow-steps li:not(:last-child)::after {
-  filter: drop-shadow(0 0 3px rgb(0 0 0 / 18%));
+  background-image:
+    linear-gradient(var(--navy), var(--navy)),
+    radial-gradient(circle, var(--navy) 0 2px, transparent 2.6px);
+  filter: drop-shadow(0 1px 3px rgb(0 0 128 / 20%));
 }
 
 .project-flow-steps li:last-child {
@@ -1228,12 +1245,12 @@ ul {
 
 @keyframes workflow-node {
   0%, 32%, 100% { border-color: var(--line); outline-color: transparent; outline-offset: 0; background: var(--surface); color: var(--text-subtle); transform: scale(1); }
-  10%, 25% { border-color: var(--white); outline: 1px solid var(--muted); outline-offset: 3px; background: var(--white); color: var(--black); transform: scale(1.08); }
+  10%, 25% { border-color: var(--navy); outline: 1px solid var(--navy); outline-offset: 3px; background: var(--navy); color: var(--white); transform: scale(1.08); }
 }
 
 @keyframes workflow-node-light {
   0%, 32%, 100% { border-color: var(--line); outline-color: transparent; outline-offset: 0; background: var(--surface); color: var(--text-subtle); transform: scale(1); }
-  10%, 25% { border-color: var(--black); outline: 1px solid var(--muted); outline-offset: 3px; background: var(--black); color: #fff; transform: scale(1.08); }
+  10%, 25% { border-color: var(--navy); outline: 1px solid var(--navy); outline-offset: 3px; background: var(--navy); color: var(--white); transform: scale(1.08); }
 }
 
 @keyframes workflow-trail {
@@ -1344,7 +1361,7 @@ ul {
   width: 1.25rem;
   height: 1.25rem;
   flex: none;
-  color: var(--white);
+  color: var(--navy);
 }
 
 .project-proof-note {
@@ -1367,6 +1384,11 @@ ul {
 
 .contact-section {
   padding-bottom: 2rem;
+}
+
+.contact-submit-row .button-solid,
+.contact-submit-row .button-solid:hover {
+  color: var(--gold);
 }
 
 .contact-note {
@@ -1414,7 +1436,7 @@ ul {
   border: 1px solid var(--line);
   border-radius: 2px;
   background: var(--bg-raised);
-  color: var(--white);
+  color: var(--text);
   font: 400 1rem/1.5 var(--font-sans), "Segoe UI", sans-serif;
   transition: border-color 160ms ease, background-color 160ms ease;
 }
@@ -1426,8 +1448,8 @@ ul {
 
 .contact-field input:focus-visible,
 .contact-field textarea:focus-visible {
-  border-color: var(--white);
-  outline: 2px solid var(--white);
+  border-color: var(--navy);
+  outline: 2px solid var(--navy);
   outline-offset: 3px;
 }
 
@@ -1468,7 +1490,7 @@ ul {
   padding: 0.25rem 0;
   border: 0;
   background: none;
-  color: var(--white);
+  color: var(--navy);
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
@@ -1498,7 +1520,7 @@ ul {
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgb(9 9 9 / 92%);
+  background: rgb(0 0 128 / 92%);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1560,7 +1582,7 @@ ul {
 
 .contact-status {
   min-height: 1.4em;
-  color: var(--white);
+  color: var(--text-subtle);
   font-size: 0.82rem;
   line-height: 1.5;
 }
@@ -1589,7 +1611,7 @@ ul {
 
 .social-link:hover {
   border-color: var(--line);
-  color: var(--white);
+  color: var(--navy);
 }
 
 .social-link svg {
@@ -1623,8 +1645,12 @@ ul {
 .blog-post-link:focus-visible,
 .contact-email-copy:focus-visible,
 .social-link:focus-visible {
-  outline: 2px solid #f1f1ee;
+  outline: 2px solid var(--navy);
   outline-offset: 4px;
+}
+
+.tech-section .tech-toggle:focus-visible {
+  outline-color: var(--white);
 }
 
 .site-header-shell .nav-link:focus-visible,
@@ -1640,7 +1666,7 @@ ul {
 .lower-sections .contact-email-copy:focus-visible,
 .lower-sections .social-link:focus-visible,
 .lower-sections .button:focus-visible {
-  outline-color: var(--black);
+  outline-color: var(--navy);
 }
 
 @media (max-width: 900px) {
@@ -1691,19 +1717,15 @@ ul {
 
   .brand {
     width: max-content;
-    height: 36px;
+    height: 46px;
     justify-self: center;
     gap: 0.45rem;
   }
 
   .brand-logo {
-    flex-basis: 118px;
-    width: 118px;
-    height: 36px;
-  }
-
-  .brand-name {
-    font-size: 0.62rem;
+    flex-basis: 156px;
+    width: 156px;
+    height: 46px;
   }
 
   .site-nav {
